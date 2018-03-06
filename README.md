@@ -1,2 +1,10 @@
 # TBA
-Best projet ever!
+Veebirakenduste projekt.
+
+Liikmed:
+
+Egert Teesaar
+
+Marko Kullam
+
+Johannes Laamann
