@@ -1,3 +1,6 @@
+var lat;
+var long;
+
 function loadWeatherData(latitude, longitude) {
     $.ajax({
         url: "/api/location/" + latitude + "/" + longitude,
@@ -12,10 +15,9 @@ function loadWeatherData(latitude, longitude) {
 
 function getLocationSuccessFunction(position)
 {
-    var lat = position.coords.latitude;
-    var long = position.coords.longitude;
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
     console.log(lat, long);
-    loadWeatherData(lat, long);
 }
 
 function clearIntroView() {
@@ -24,12 +26,13 @@ function clearIntroView() {
 
 function loadResultView(data) {
     // todo: show weather, load wardrobe from backend
-    var location = data.name;
+    var location = data.location;
     var temp = data.temp;
     var hum = data.humidity;
     var pres = data.pressure;
     var wind_speed = data.wind_speed;
     var wind_deg = data.wind_deg;
+    $(".location-text").text(location);
 
 }
 
@@ -41,7 +44,9 @@ $(document).ready(function () {
         alert('It seems like Geolocation, which is required for this page, is not enabled in your browser.');
     }
     $(".begin-button").click(function () {
-        alert("click");
+        $(".intro-text").hide('slow');
+        $(".begin-button").hide('slow');
+        loadWeatherData(lat, long);
     });
 });
 
