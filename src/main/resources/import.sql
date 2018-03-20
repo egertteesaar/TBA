@@ -1,0 +1,1 @@
+insert into stock_table (name, type, media_url) values ('adidas', 'sneakers', 'link to image')
