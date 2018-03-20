@@ -1,7 +1,11 @@
 package com.example.TBA.service;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.json.JsonParser;
+import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -9,6 +13,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 @Service
@@ -33,15 +40,41 @@ public class WeatherService {
         String apiKey = getApiKey();
         String uri = apiRoot + "apiKey=" + apiKey + "&lat=" + latitude + "&lon=" + longitude
                 + "&units=metric";
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(uri, String.class);
+        return extractData(uri);
     }
 
     public String getWeatherByCity(String city) throws IOException {
         String apiKey = getApiKey();
         String uri = apiRoot + "apiKey=" + apiKey + "&city=" + city + "&units=metric";
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(uri, String.class);
+        return extractData(uri);
     }
 
+    private String extractData(String uri) throws IOException{
+        RestTemplate restTemplate = new RestTemplate();
+        JsonParser parser = JsonParserFactory.getJsonParser();
+        Map<String, Object> parsedMap = parser.parseMap(restTemplate.getForObject(uri, String.class));
+        log.info(parsedMap.toString());
+        Map<String, Object> main = unpackMain(parsedMap);
+        Map<String, Object> wind = unpackWind(parsedMap);
+        Map<String, String> flatMap = new HashMap<>();
+        flatMap.put("temp", main.get("temp").toString());
+        flatMap.put("temp_min", main.get("temp_min").toString());
+        flatMap.put("temp_max", main.get("temp_max").toString());
+        flatMap.put("humidity", main.get("humidity").toString());
+        flatMap.put("pressure", main.get("pressure").toString());
+        flatMap.put("wind_speed", wind.get("speed").toString());
+        flatMap.put("wind_deg", wind.get("deg").toString());
+        // todo: get sunrise & sunset
+        return new ObjectMapper().writeValueAsString(flatMap);
+    }
+
+    @JsonProperty("main")
+    private Map<String, Object> unpackMain(Map<String, Object> nested) {
+        return (Map<String, Object>) nested.get("main");
+    }
+
+    @JsonProperty("wind")
+    private Map<String, Object> unpackWind(Map<String, Object> nested) {
+        return (Map<String, Object>) nested.get("wind");
+    }
 }
