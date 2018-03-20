@@ -1,0 +1,5 @@
+src/resources/application.properties
+src/resources/local.properties
+.idea/
+target/
+
