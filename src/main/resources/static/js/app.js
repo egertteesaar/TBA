@@ -6,7 +6,6 @@ function loadWeatherData(latitude, longitude) {
         url: "/api/location/" + latitude + "/" + longitude,
         success: function(data) {
             data = $.parseJSON(data);
-            console.log(data);
             clearIntroView();
             loadResultView(data);
         }
@@ -54,22 +53,13 @@ function loadResultView(data) {
 
 $(document).ready(function () {
     $(".intro-form").hide();
-    var locationObtained = false;
     if (navigator.geolocation) {
-        try {
-            navigator.geolocation.getCurrentPosition(getLocationSuccessFunction, function (e) {
-                console.log(e)
-            });
-            locationObtained = true;
-        } catch (err) {
-            console.log(err);
-        }
+        navigator.geolocation.getCurrentPosition(getLocationSuccessFunction, function (pos) {
+            $(".begin-button").hide();
+            $(".intro-form").show();
+        });
     } else {
         alert('It seems like Geolocation, which is required for this page, is not enabled in your browser.');
-    }
-    if (!locationObtained) {
-        $(".begin-button").hide();
-        $(".intro-form").show();
     }
     $(".begin-button").click(function () {
         loadWeatherData(lat, long);
