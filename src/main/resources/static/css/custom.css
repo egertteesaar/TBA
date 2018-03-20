@@ -19,3 +19,15 @@ body {
     height: 60px;
     background: #ebe4f3;
 }
+
+.container {
+    margin-top: 10px;
+}
+
+.begin-button {
+    margin-top: 60px;
+}
+
+.intro-text {
+    margin-top: 20px;
+}
