@@ -57,6 +57,7 @@ public class WeatherService {
         Map<String, Object> main = unpackMain(parsedMap);
         Map<String, Object> wind = unpackWind(parsedMap);
         Map<String, String> flatMap = new HashMap<>();
+        flatMap.put("location", parsedMap.get("name").toString());
         flatMap.put("temp", main.get("temp").toString());
         flatMap.put("temp_min", main.get("temp_min").toString());
         flatMap.put("temp_max", main.get("temp_max").toString());
@@ -65,6 +66,7 @@ public class WeatherService {
         flatMap.put("wind_speed", wind.get("speed").toString());
         flatMap.put("wind_deg", wind.get("deg").toString());
         // todo: get sunrise & sunset
+        // todo: add custom description based on temp, humidity and wind speed
         return new ObjectMapper().writeValueAsString(flatMap);
     }
 
