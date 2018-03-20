@@ -14,11 +14,6 @@ public class StockResource {
     @Autowired
     StockService service;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index() {
-        return "todo";
-    }
-
     @RequestMapping(value = "/api/stock", method = RequestMethod.GET)
     public ResponseEntity<String> getObj() {
         List<StockObj> allObjs = service.getAll();
