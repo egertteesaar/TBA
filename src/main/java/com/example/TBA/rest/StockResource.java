@@ -19,7 +19,7 @@ public class StockResource {
         return "todo";
     }
 
-    @RequestMapping(value = "/stock", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/stock", method = RequestMethod.GET)
     public ResponseEntity<String> getObj() {
         List<StockObj> allObjs = service.getAll();
         return new ResponseEntity<>(allObjs.toString(), HttpStatus.OK);
