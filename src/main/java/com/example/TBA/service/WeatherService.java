@@ -45,7 +45,7 @@ public class WeatherService {
 
     public String getWeatherByCity(String city) throws IOException {
         String apiKey = getApiKey();
-        String uri = apiRoot + "apiKey=" + apiKey + "&city=" + city + "&units=metric";
+        String uri = apiRoot + "apiKey=" + apiKey + "&q=" + city + "&units=metric";
         return extractData(uri);
     }
 
@@ -64,7 +64,7 @@ public class WeatherService {
         flatMap.put("humidity", main.get("humidity").toString());
         flatMap.put("pressure", main.get("pressure").toString());
         flatMap.put("wind_speed", wind.get("speed").toString());
-        flatMap.put("wind_deg", wind.get("deg").toString());
+//        flatMap.put("wind_deg", wind.get("deg").toString());
         // todo: get sunrise & sunset
         // todo: add custom description based on temp, humidity and wind speed
         return new ObjectMapper().writeValueAsString(flatMap);

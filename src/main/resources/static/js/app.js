@@ -13,6 +13,17 @@ function loadWeatherData(latitude, longitude) {
     });
 }
 
+function loadWeatherDataByLocation(location) {
+    $.ajax({
+        url: "/api/location/" + location,
+        success: function(data) {
+            data = $.parseJSON(data);
+            clearIntroView();
+            loadResultView(data);
+        }
+    });
+}
+
 function getLocationSuccessFunction(position)
 {
     lat = position.coords.latitude;
@@ -22,10 +33,14 @@ function getLocationSuccessFunction(position)
 
 function clearIntroView() {
     // todo: remove .intro-text and .begin-button from dom
+    $(".intro-text").hide('slow');
+    $(".begin-button").hide('slow');
+    $(".location-form").hide('slow');
 }
 
 function loadResultView(data) {
     // todo: show weather, load wardrobe from backend
+    console.log(data);
     var location = data.location;
     var temp = data.temp;
     var hum = data.humidity;
@@ -38,6 +53,7 @@ function loadResultView(data) {
 
 
 $(document).ready(function () {
+    $(".intro-form").hide();
     var locationObtained = false;
     if (navigator.geolocation) {
         try {
@@ -52,12 +68,15 @@ $(document).ready(function () {
         alert('It seems like Geolocation, which is required for this page, is not enabled in your browser.');
     }
     if (!locationObtained) {
-        // todo: !!!!!!!!!! REPLACE BUTTON WITH FORM!!!!!!!!!!!!!
+        $(".begin-button").hide();
+        $(".intro-form").show();
     }
     $(".begin-button").click(function () {
-        $(".intro-text").hide('slow');
-        $(".begin-button").hide('slow');
         loadWeatherData(lat, long);
+    });
+    $(".location-form").submit(function (event){
+        event.preventDefault();
+        loadWeatherDataByLocation($(".form-control").val());
     });
 });
 
