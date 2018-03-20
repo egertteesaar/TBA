@@ -32,16 +32,27 @@ function loadResultView(data) {
     var pres = data.pressure;
     var wind_speed = data.wind_speed;
     var wind_deg = data.wind_deg;
-    $(".location-text").text(location + ", " + temp + "°C, tuule kiirus " + wind_speed + " m/s");
+    $(".weather-text").text(location + ", " + temp + "°C, tuule kiirus " + wind_speed + " m/s");
 
 }
 
 
 $(document).ready(function () {
+    var locationObtained = false;
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(getLocationSuccessFunction, function (e) {console.log(e)});
+        try {
+            navigator.geolocation.getCurrentPosition(getLocationSuccessFunction, function (e) {
+                console.log(e)
+            });
+            locationObtained = true;
+        } catch (err) {
+            console.log(err);
+        }
     } else {
         alert('It seems like Geolocation, which is required for this page, is not enabled in your browser.');
+    }
+    if (!locationObtained) {
+        // todo: !!!!!!!!!! REPLACE BUTTON WITH FORM!!!!!!!!!!!!!
     }
     $(".begin-button").click(function () {
         $(".intro-text").hide('slow');
