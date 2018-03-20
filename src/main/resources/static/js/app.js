@@ -32,7 +32,7 @@ function loadResultView(data) {
     var pres = data.pressure;
     var wind_speed = data.wind_speed;
     var wind_deg = data.wind_deg;
-    $(".location-text").text(location);
+    $(".location-text").text(location + ", " + temp + "°C, tuule kiirus " + wind_speed + " m/s");
 
 }
 
