@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
+@SpringBootApplication
 public class Application {
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
