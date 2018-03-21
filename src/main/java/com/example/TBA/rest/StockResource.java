@@ -17,7 +17,7 @@ public class StockResource {
     StockService service;
 
     @RequestMapping(value = "/api/stock", method = RequestMethod.GET)
-    public String getObj() throws JsonProcessingException{
+    public String getAllObjs() throws JsonProcessingException{
         List<StockObj> allObjs = service.getAll();
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(allObjs);
