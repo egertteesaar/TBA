@@ -1,7 +1,7 @@
 # TBA
 Veebirakenduste loomine
 
-[http://midakanda.herokuapp.com/](http://midakanda.herokuapp.com/)
+[https://midakanda.herokuapp.com/](https://midakanda.herokuapp.com/)
 
 
 Autorid:
