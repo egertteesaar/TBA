@@ -1,7 +1,8 @@
 # TBA
 Veebirakenduste loomine
 
-[midakanda.herokuapp.com](midakanda.herokuapp.com)
+[http://midakanda.herokuapp.com/](http://midakanda.herokuapp.com/)
+
 
 Autorid:
 Egert Teesaar
