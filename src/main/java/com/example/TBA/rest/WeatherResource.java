@@ -21,17 +21,15 @@ public class WeatherResource {
     private static final Logger log = LoggerFactory.getLogger(WeatherResource.class);
 
     @RequestMapping(value = "/api/location/{latitude}/{longitude}", method = RequestMethod.GET)
-    public ResponseEntity<String> getWeather(@PathVariable String latitude, @PathVariable String longitude)
+    public String getWeather(@PathVariable String latitude, @PathVariable String longitude)
             throws IOException{
-        String result = service.getWeatherByLatitudeLongitude(latitude, longitude);
-        return new ResponseEntity<String>(result, HttpStatus.OK);
+        return service.getWeatherByLatitudeLongitude(latitude, longitude);
     }
 
 
     @RequestMapping(value = "/api/location/{location}", method = RequestMethod.GET)
-    public ResponseEntity<String> getWeatherByLocation(@PathVariable String location)
+    public String getWeatherByLocation(@PathVariable String location)
             throws IOException{
-        String result = service.getWeatherByCity(location);
-        return new ResponseEntity<String>(result, HttpStatus.OK);
+        return service.getWeatherByCity(location);
     }
 }

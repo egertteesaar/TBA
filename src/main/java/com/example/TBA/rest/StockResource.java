@@ -2,6 +2,8 @@ package com.example.TBA.rest;
 
 import com.example.TBA.model.StockObj;
 import com.example.TBA.service.StockService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,10 @@ public class StockResource {
     StockService service;
 
     @RequestMapping(value = "/api/stock", method = RequestMethod.GET)
-    public ResponseEntity<String> getObj() {
+    public String getObj() throws JsonProcessingException{
         List<StockObj> allObjs = service.getAll();
-        return new ResponseEntity<>(allObjs.toString(), HttpStatus.OK);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(allObjs);
     }
 
 }
