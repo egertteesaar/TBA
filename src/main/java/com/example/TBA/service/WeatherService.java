@@ -49,6 +49,12 @@ public class WeatherService {
         return extractData(uri);
     }
 
+    /**
+     * Parse JSON data from external API and extract specific values into new JSON object
+     * @param uri
+     * @return
+     * @throws IOException
+     */
     private String extractData(String uri) throws IOException{
         RestTemplate restTemplate = new RestTemplate();
         JsonParser parser = JsonParserFactory.getJsonParser();
@@ -59,12 +65,18 @@ public class WeatherService {
         Map<String, String> flatMap = new HashMap<>();
         flatMap.put("location", parsedMap.get("name").toString());
         flatMap.put("temp", main.get("temp").toString());
-        flatMap.put("temp_min", main.get("temp_min").toString());
-        flatMap.put("temp_max", main.get("temp_max").toString());
-        flatMap.put("humidity", main.get("humidity").toString());
-        flatMap.put("pressure", main.get("pressure").toString());
-        flatMap.put("wind_speed", wind.get("speed").toString());
-//        flatMap.put("wind_deg", wind.get("deg").toString());
+        if (main.containsKey("temp_min"))
+            flatMap.put("temp_min", main.get("temp_min").toString());
+        if (main.containsKey("temp_max"))
+            flatMap.put("temp_max", main.get("temp_max").toString());
+        if (main.containsKey("humidity"))
+            flatMap.put("humidity", main.get("humidity").toString());
+        if (main.containsKey("pressure"))
+            flatMap.put("pressure", main.get("pressure").toString());
+        if (wind.containsKey("speed"))
+            flatMap.put("wind_speed", wind.get("speed").toString());
+        if (wind.containsKey("deg"))
+            flatMap.put("wind_deg", wind.get("deg").toString());
         // todo: get sunrise & sunset
         // todo: add custom description based on temp, humidity and wind speed
         return new ObjectMapper().writeValueAsString(flatMap);

@@ -38,7 +38,7 @@ function clearIntroView() {
 }
 
 function loadResultView(data) {
-    // todo: show weather, load wardrobe from backend
+    // todo: unpack other values; show weather, load wardrobe from backend
     console.log(data);
     var location = data.location;
     var temp = data.temp;
