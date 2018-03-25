@@ -31,7 +31,6 @@ function getLocationSuccessFunction(position)
 }
 
 function clearIntroView() {
-    // todo: remove .intro-text and .begin-button from dom
     $(".intro-text").hide('slow');
     $(".begin-button").hide('slow');
     $(".location-form").hide('slow');
