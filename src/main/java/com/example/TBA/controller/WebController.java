@@ -8,9 +8,8 @@ import java.util.Map;
 @Controller
 public class WebController {
 
-    @RequestMapping("/welcome")
+    @RequestMapping("/privacy")
     public String welcome(Map<String, Object> model) {
-        model.put("message", "Welcome");
-        return "welcome";
+        return "privacy";
     }
 }
