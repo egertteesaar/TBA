@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "stock_table")
-public class StockObj {
+public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -17,14 +17,14 @@ public class StockObj {
     @Column(name = "media_url")
     private String media_url;
 
-    public StockObj(Long id, String name, String type, String media_url){
+    public Stock(Long id, String name, String type, String media_url){
         this.id = id;
         this.name = name;
         this.type = type;
         this.media_url = media_url;
     };
 
-    public StockObj(){};
+    public Stock(){};
 
     public long getId() {
         return id;
@@ -62,7 +62,7 @@ public class StockObj {
 
     @Override
     public String toString() {
-        return "StockObj{" +
+        return "Stock{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
