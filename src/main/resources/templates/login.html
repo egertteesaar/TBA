@@ -38,13 +38,7 @@
 			</button>
 		</form>
 		
-		<form action="/connect/google" method="POST" style="display: inline">
-			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> 
-			<input type="hidden" name="scope" value="profile email" />
-			<button type="submit" class="btn btn-danger">
-				Google <span class="fa fa-google-plus"></span>
-			</button>
-		</form>
+
 
 		<form action="/connect/facebook" method="POST" style="display: inline">
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> 
@@ -54,14 +48,6 @@
 			</button>
 		</form>
 
-		<form action="/connect/linkedin" method="POST" style="display: inline">
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> 
-			<input type="hidden" name="scope"
-				value="r_basicprofile,r_emailaddress" />
-			<button type="submit" class="btn btn-primary">
-				LinkedIn <span class="fa fa-linkedin"></span>
-			</button>
-		</form>
 		<br />
 		<h3>
 			<p class="bg-important">
