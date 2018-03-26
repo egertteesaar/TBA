@@ -47,7 +47,7 @@ public class FacebookProvider  {
 		userForm.setEmail(user.getEmail());
 		userForm.setFirstName(user.getFirstName());
 		userForm.setLastName(user.getLastName());
-		userForm.setImage("https://i.imgur.com/MDhbuT6.jpg");
+		userForm.setImage("");
 		userForm.setProvider(FACEBOOK);
 	}
 
