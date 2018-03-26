@@ -43,27 +43,27 @@ public class LoginController {
 
     @RequestMapping(value = "/facebook", method = RequestMethod.GET)
     public String loginToFacebook(Model model) {
-	return facebookProvider.getFacebookUserData(model, new UserBean());
+        return facebookProvider.getFacebookUserData(model, new UserBean());
     }
 
     @RequestMapping(value = "/google", method = RequestMethod.GET)
     public String loginToGoogle(Model model) {
-	return googleProvider.getGoogleUserData(model, new UserBean());
+        return googleProvider.getGoogleUserData(model, new UserBean());
     }
 
     @RequestMapping(value = "/linkedin", method = RequestMethod.GET)
     public String helloFacebook(Model model) {
-	return linkedInProvider.getLinkedInUserData(model, new UserBean());
+        return linkedInProvider.getLinkedInUserData(model, new UserBean());
     }
 
     @RequestMapping(value = { "/login" })
     public String login() {
-	return "login";
+        return "login";
     }
 
     @GetMapping("/registration")
     public String showRegistration(UserBean userBean) {
-	return "registration";
+        return "registration";
     }
 
     @PostMapping("/registration")
@@ -87,8 +87,8 @@ public class LoginController {
     /** If we can't find a user/email combination */
     @RequestMapping("/login-error")
     public String loginError(Model model) {
-	model.addAttribute("loginError", true);
-	return "login";
+        model.addAttribute("loginError", true);
+        return "login";
     }
 
 }

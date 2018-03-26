@@ -19,8 +19,8 @@ public class FacebookProvider  {
 	private static final String FACEBOOK = "facebook";
 	private static final String REDIRECT_LOGIN = "redirect:/login";
 
-    	@Autowired
-    	BaseProvider baseProvider ;
+    @Autowired
+    BaseProvider baseProvider ;
     	
 
 	public String getFacebookUserData(Model model, UserBean userForm) {
