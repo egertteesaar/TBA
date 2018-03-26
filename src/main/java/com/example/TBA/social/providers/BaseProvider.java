@@ -33,17 +33,18 @@ public class BaseProvider {
     protected Autologin autologin;
 
     public BaseProvider(Facebook facebook, Google google, LinkedIn linkedIn, ConnectionRepository connectionRepository) {
-	this.facebook = facebook;
-	this.connectionRepository = connectionRepository;
-	this.google = google;
-	this.linkedIn = linkedIn;
-    }
 
-    protected void saveUserDetails(UserBean userBean) {
-	if (StringUtils.isNotEmpty(userBean.getPassword())) {
-	    userBean.setPassword(bCryptPasswordEncoder.encode(userBean.getPassword()));
-	}
-	userRepository.save(userBean);
+        this.facebook = facebook;
+        this.connectionRepository = connectionRepository;
+        this.google = google;
+        this.linkedIn = linkedIn;
+        }
+
+        protected void saveUserDetails(UserBean userBean) {
+        if (StringUtils.isNotEmpty(userBean.getPassword())) {
+            userBean.setPassword(bCryptPasswordEncoder.encode(userBean.getPassword()));
+        }
+        userRepository.save(userBean);
 
     }
 

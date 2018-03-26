@@ -3,16 +3,13 @@ package com.example.TBA.model;
 
 import org.hibernate.validator.constraints.Email;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity(name = "user")
-@Table(name = "user")
+@Table(name = "user_table")
 public class UserBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -21,14 +18,17 @@ public class UserBean implements Serializable{
 	@Email(message = "Email Format is not valid")
 	@Size(min = 3, max = 30, message = "Email can not be empty")
 	@Id
+	@Column(name="email")
 	private String email;
 	
 	@NotNull(message = "First Name cannot be empty")
 	@Size(min = 3, max = 30, message = "First Name cannot be less than 3 characters")
+	@Column(name="firstName")
 	private String firstName;
 
 	@NotNull(message = "Last Name cannot be empty")
 	@Size(min = 3, max = 30, message = "Last Name cannot be less than 3 characters")
+	@Column(name="lastName")
 	private String lastName;
 
 	private String title;

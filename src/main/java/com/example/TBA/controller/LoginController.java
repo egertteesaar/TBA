@@ -68,20 +68,20 @@ public class LoginController {
 
     @PostMapping("/registration")
     public String registerUser(HttpServletResponse httpServletResponse, Model model, @Valid UserBean userBean, BindingResult bindingResult) {
-	if (bindingResult.hasErrors()) {
-	    return "registration";
-	}
-	userBean.setProvider("REGISTRATION");
-	// Save the details in DB
-	if (StringUtils.isNotEmpty(userBean.getPassword())) {
-	    userBean.setPassword(bCryptPasswordEncoder.encode(userBean.getPassword()));
-	}
-	userRepository.save(userBean);
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+        userBean.setProvider("REGISTRATION");
+        // Save the details in DB
+        if (StringUtils.isNotEmpty(userBean.getPassword())) {
+            userBean.setPassword(bCryptPasswordEncoder.encode(userBean.getPassword()));
+        }
+        userRepository.save(userBean);
 
-	autologin.setSecuritycontext(userBean);
+        autologin.setSecuritycontext(userBean);
 
-	model.addAttribute("loggedInUser", userBean);
-	return "secure/user";
+        model.addAttribute("loggedInUser", userBean);
+        return "secure/user";
     }
 
     /** If we can't find a user/email combination */
