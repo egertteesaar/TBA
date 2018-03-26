@@ -18,6 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 .antMatchers("/api/session").permitAll()
                 .antMatchers("/api/location/**").permitAll()
+                .antMatchers("/api/stock/**").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .and()
                 .headers().frameOptions().disable() // for h2
