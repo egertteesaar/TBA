@@ -56,28 +56,18 @@
 				</ul>
 			</div>
 		</nav>
-		<h3>User profile</h3>
-        <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
-    Logged in user: <b><span sec:authentication="name"></span></b>
-        <form action="#" th:action="@{/logout}" method="post">
-           <button type="submit"  class="btn btn-danger btn-sm">
-           <span class="glyphicon glyphicon-log-out"></span>
-            Log out</button>
-        </form>
-        </div>
-
-		<form th:object="${loggedInUser}" method="post">
-			<div class="row">
-				<label for="email">Email:</label>
-				<span th:text="*{email}" />
+		<form th:object="${loggedInUser}">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <span th:text="*{email}" />
 			</div>
-			<div class="row">
-				<label for="firstName">First name:</label>
-				 <span th:text="*{firstName}" />
+			<div class="form-group">
+                <label for="firstName">First name:</label>
+				<span th:text="*{firstName}" />
 			</div>
-			<div class="row">
-				<label for="lastName">Last name:</label>
-				<span th:text="*{lastName}" />
+			<div class="form-group">
+                <label for="lastName">Last name:</label>
+                <span th:text="*{lastName}" />
 			</div>
 		</form>
 	</div>
