@@ -46,7 +46,7 @@
 					<li class="nav-item">
 						<a class="nav-link" href="#">ostukorv</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item logout-form">
 						<div sec:authorize="isAuthenticated()">
                             <form id="logout-form" th:action="@{/logout}" method="post">
                                 <a onclick="document.getElementById('logout-form').submit()" class="nav-link">logi välja</a>

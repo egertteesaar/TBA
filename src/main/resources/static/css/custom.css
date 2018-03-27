@@ -43,3 +43,7 @@ body {
 .login-area {
     margin-top: 60px;
 }
+
+.logout-form {
+    cursor:pointer;
+}
