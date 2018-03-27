@@ -18,14 +18,14 @@ public class LoggedInUserController {
 
     @ModelAttribute("loggedInUser")
     public void secureUser(Model model) {
-	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	UserBean user = userRepository.findByEmail(auth.getName());
-	model.addAttribute("loggedInUser", user);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserBean user = userRepository.findByEmail(auth.getName());
+        model.addAttribute("loggedInUser", user);
     }
 
     @GetMapping("/secure/user")
     public String securePage() {
-	return "secure/user";
+        return "secure/user";
     }
 
 }

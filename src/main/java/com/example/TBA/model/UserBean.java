@@ -22,12 +22,12 @@ public class UserBean implements Serializable{
 	private String email;
 	
 	@NotNull(message = "First Name cannot be empty")
-	@Size(min = 3, max = 30, message = "First Name cannot be less than 3 characters")
+	@Size(min = 2, max = 30, message = "First Name cannot be less than 2 characters")
 	@Column(name="firstName")
 	private String firstName;
 
 	@NotNull(message = "Last Name cannot be empty")
-	@Size(min = 3, max = 30, message = "Last Name cannot be less than 3 characters")
+	@Size(min = 2, max = 30, message = "Last Name cannot be less than 2 characters")
 	@Column(name="lastName")
 	private String lastName;
 

@@ -12,4 +12,9 @@ public class WebController {
     public String welcome(Map<String, Object> model) {
         return "privacy";
     }
+
+    @RequestMapping("/")
+    public String index() {
+        return "index";
+    }
 }
