@@ -23,9 +23,9 @@ public class LoggedInUserController {
         model.addAttribute("loggedInUser", user);
     }
 
-    @GetMapping("/secure/user")
+    @GetMapping("/user")
     public String securePage() {
-        return "secure/user";
+        return "user";
     }
 
 }

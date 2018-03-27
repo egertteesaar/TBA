@@ -32,7 +32,7 @@ public class LinkedInProvider  {
 		baseProvider.autoLoginUser(userForm);
 			
 		model.addAttribute("loggedInUser",userForm);
-		return "secure/user";
+		return "user";
 	}
 	
 	private void populateUserDetailsFromLinkedIn(UserBean userForm) {

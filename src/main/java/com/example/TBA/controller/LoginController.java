@@ -81,7 +81,7 @@ public class LoginController {
         autologin.setSecuritycontext(userBean);
 
         model.addAttribute("loggedInUser", userBean);
-        return "secure/user";
+        return "user";
     }
 
     /** If we can't find a user/email combination */
