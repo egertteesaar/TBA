@@ -25,15 +25,32 @@
 </head>
 
 <body>
+
     <div class="header container">
-        <div class="row">
-            <div class="col-sm">
-                <h1>mida kanda</h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand mb-0 h1" href="#">mida kanda</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <div sec:authorize="isAuthenticated()">
+                            <a class="nav-link" th:href="@{/secure/user}">konto</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div sec:authorize="isAnonymous()">
+                            <a class="nav-link" th:href="@{/login}">logi sisse</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">ostukorv</a>
+                    </li>
+                </ul>
             </div>
-            <div class="col-sm shopping-cart-link">
-                <p class="text-right"><a href="">minu ostukorv</a></p>
-            </div>
-        </div>
+        </nav>
         <div class="intro-text">
             <p class="lead">
                 Lorem ipsum dolor amet four dollar toast helvetica raclette YOLO la croix flannel bicycle rights, chartreuse pitchfork yr seitan authentic snackwave poutine hot chicken. Literally irony stumptown activated charcoal vegan normcore aesthetic bitters pabst. Crucifix occupy slow-carb schlitz try-hard gochujang jean shorts hella affogato lomo ugh master cleanse. Kogi you probably haven't heard of them tbh chambray trust fund DIY health goth keffiyeh tofu food truck.

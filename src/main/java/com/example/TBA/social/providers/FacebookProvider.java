@@ -18,6 +18,7 @@ public class FacebookProvider  {
 
 	private static final String FACEBOOK = "facebook";
 	private static final String REDIRECT_LOGIN = "redirect:/login";
+	private static final String REDIRECT_SUCCESS = "redirect:/";
 
     @Autowired
     BaseProvider baseProvider ;
@@ -36,7 +37,7 @@ public class FacebookProvider  {
 		//Login the User
 		baseProvider.autoLoginUser(userForm);
 		model.addAttribute("loggedInUser",userForm);
-		return "secure/user";
+		return REDIRECT_SUCCESS;
 	}
 
 	protected void populateUserDetailsFromFacebook(UserBean userForm) {
