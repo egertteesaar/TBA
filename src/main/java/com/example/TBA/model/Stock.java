@@ -6,23 +6,31 @@ import java.io.Serializable;
 @Entity
 @Table(name = "stock_table")
 public class Stock {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @Column(name = "brand")
+    private String brand;
     @Column(name = "name")
     private String name;
     @Column(name = "type")
     private String type;
-    @Column(name = "media_url")
-    private String media_url;
+    @Column(name = "image")
+    private String image;
+    @Column(name = "color")
+    private String color;
+    @Column(name = "price")
+    private Long price;
 
-    public Stock(Long id, String name, String type, String media_url){
-        this.id = id;
+    public Stock(String brand, String name, String type, String image, Long price) {
+        this.brand = brand;
         this.name = name;
         this.type = type;
-        this.media_url = media_url;
-    };
+        this.image = image;
+        this.price = price;
+    }
 
     public Stock(){};
 
@@ -44,14 +52,6 @@ public class Stock {
         return type;
     }
 
-    public String getMedia_url() {
-        return media_url;
-    }
-
-    public void setMedia_url(String media_url) {
-        this.media_url = media_url;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -60,13 +60,39 @@ public class Stock {
         this.type = type;
     }
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Stock{" +
                 "id=" + id +
+                ", brand='" + brand + '\'' +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", media_url='" + media_url + '\'' +
+                ", image='" + image + '\'' +
+                ", price=" + price +
                 '}';
     }
 }
