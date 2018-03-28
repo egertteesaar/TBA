@@ -42,6 +42,9 @@ $(document).ready(function () {
     loadStock();
     $("#load-more-button").click(function(){
         populateContent(jsonData, startIndex);
+        if (startIndex > jsonData.length) {
+            $("#load-more-button").hide();
+        }
     });
 });
 
