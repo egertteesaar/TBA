@@ -51,21 +51,21 @@ function loadResultView(data) {
 
 
 $(document).ready(function () {
-    $(".intro-form").hide();
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(getLocationSuccessFunction, function (pos) {
-            $(".begin-button").hide();
-            $(".intro-form").show();
-        });
-    } else {
-        alert('It seems like Geolocation, which is required for this page, is not enabled in your browser.');
-    }
-    $(".begin-button").click(function () {
-        loadWeatherData(lat, long);
-    });
-    $(".location-form").submit(function (event){
-        event.preventDefault();
-        loadWeatherDataByLocation($(".form-control").val());
-    });
+    // $(".intro-form").hide();
+    // if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition(getLocationSuccessFunction, function (pos) {
+    //         $(".begin-button").hide();
+    //         $(".intro-form").show();
+    //     });
+    // } else {
+    //     alert('It seems like Geolocation, which is required for this page, is not enabled in your browser.');
+    // }
+    // $(".begin-button").click(function () {
+    //     loadWeatherData(lat, long);
+    // });
+    // $(".location-form").submit(function (event){
+    //     event.preventDefault();
+    //     loadWeatherDataByLocation($(".form-control").val());
+    // });
 });
 
