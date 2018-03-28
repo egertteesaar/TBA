@@ -51,6 +51,7 @@ function loadResultView(data) {
 
 
 $(document).ready(function () {
+    // todo: request /api/stock, populate cards
     // $(".intro-form").hide();
     // if (navigator.geolocation) {
     //     navigator.geolocation.getCurrentPosition(getLocationSuccessFunction, function (pos) {

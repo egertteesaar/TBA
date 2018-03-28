@@ -15,6 +15,8 @@ public class Stock {
     private String brand;
     @Column(name = "name")
     private String name;
+    @Column(name = "description")
+    private String description;
     @Column(name = "type")
     private String type;
     @Column(name = "image")
@@ -24,11 +26,13 @@ public class Stock {
     @Column(name = "price")
     private Long price;
 
-    public Stock(String brand, String name, String type, String image, Long price) {
+    public Stock(String brand, String name, String description, String type, String image, String color, Long price) {
         this.brand = brand;
         this.name = name;
+        this.description = description;
         this.type = type;
         this.image = image;
+        this.color = color;
         this.price = price;
     }
 
@@ -84,6 +88,22 @@ public class Stock {
         this.price = price;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     @Override
     public String toString() {
         return "Stock{" +
@@ -92,6 +112,7 @@ public class Stock {
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", image='" + image + '\'' +
+                ", description='" + description + '\'' +
                 ", price=" + price +
                 '}';
     }
