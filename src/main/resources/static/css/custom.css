@@ -57,3 +57,7 @@ body {
     margin: 15px;
     width: 12rem;
 }
+
+#load-more-button {
+    margin-bottom: 10px;
+}
