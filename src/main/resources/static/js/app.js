@@ -5,6 +5,9 @@ function populateContent(data) {
         var image = item.image;
         var brand = item.brand;
         var name = item.name;
+        var price = item.price;
+        var whole = Math.floor(price / 100);
+        var remainder = price % 100;
         var description = item.description;
         $('.stock-content').append("" +
             "<div class=\"card\">\n" +
@@ -12,6 +15,7 @@ function populateContent(data) {
             "<div class=\"card-body\">\n" +
             "<h5 class=\"card-title\">" + brand + " " + name + "</h5>\n" +
             "<p class=\"card-text\">" + description + "</p>\n" +
+            "<p class=\"card-text\">" + whole + "." + remainder + "€" + "</p>\n" +
             "<a href=\"#\" class=\"btn btn-primary\">Detailid</a>\n" +
             "</div>\n" +
             "</div>");
