@@ -1,6 +1,10 @@
-function populateContent(data) {
-    console.log(data);
-    for (i = 0; i < data.length; i++) {
+var jsonData;
+var startIndex = 0;
+
+
+function populateContent(data, index) {
+    startIndex += 8;
+    for (i = index; i < data.length && i < index + 8; i++) {
         var item = data[i];
         var image = item.image;
         var brand = item.brand;
@@ -27,7 +31,8 @@ function loadStock(){
         url: "/api/stock/",
         success: function(data) {
             data = $.parseJSON(data);
-            populateContent(data);
+            jsonData = data;
+            populateContent(jsonData, startIndex);
         }
     });
 }
@@ -35,5 +40,8 @@ function loadStock(){
 
 $(document).ready(function () {
     loadStock();
+    $("#load-more-button").click(function(){
+        populateContent(jsonData, startIndex);
+    });
 });
 
