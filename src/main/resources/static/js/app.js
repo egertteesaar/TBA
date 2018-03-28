@@ -15,13 +15,13 @@ function populateContent(data, index) {
         var description = item.description;
         $('.stock-content').append("" +
             "<div class=\"card\">\n" +
-            "<img class=\"card-img-top\" src=\"" + image + "\" alt=\"Card image cap\"/>\n" +
-            "<div class=\"card-body\">\n" +
-            "<h5 class=\"card-title\">" + brand + " " + name + "</h5>\n" +
-            "<p class=\"card-text\">" + description + "</p>\n" +
-            "<p class=\"card-text\">" + whole + "." + remainder + "€" + "</p>\n" +
-            "<a href=\"#\" class=\"btn btn-primary\">Detailid</a>\n" +
-            "</div>\n" +
+                "<img class=\"card-img-top\" src=\"" + image + "\" alt=\"Card image cap\"/>\n" +
+                "<div class=\"card-body\">\n" +
+                    "<h5 class=\"card-title\">" + brand + " " + name + "</h5>\n" +
+                    "<p class=\"card-text\">" + description + "</p>\n" +
+                    "<p class=\"font-weight-bold card-text\">" + whole + "." + remainder + "€" + "</p>\n" +
+                    "<a href=\"#\" class=\"btn card-button btn-light\">Detailid</a>\n" +
+                "</div>\n" +
             "</div>");
     }
 }
