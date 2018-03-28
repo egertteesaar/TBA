@@ -47,3 +47,13 @@ body {
 .logout-form {
     cursor:pointer;
 }
+
+
+.navbar {
+    margin-bottom: 30px;
+}
+
+.card {
+    margin: 15px;
+    width: 12rem;
+}
