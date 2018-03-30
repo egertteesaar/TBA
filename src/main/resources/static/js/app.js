@@ -34,10 +34,15 @@ function loadDetails(item) {
     $('.content-column').append(
         "<div class='details'> " +
         "<p>details here</p>" +
+        '<button id="'+ id +'" onclick="addToShoppingCart(this)" id="buy-button" type="button" class="btn btn-danger">Ostukorvi</button>' +
         '<button onclick="loadMainView()" id="return-button" type="button" class="btn">Tagasi</button>' +
         "</div>"
     );
-    // todo load details
+}
+
+function addToShoppingCart(item) {
+    var id = $(item).attr("id");
+    alert(id);
 }
 
 function loadMainView() {
