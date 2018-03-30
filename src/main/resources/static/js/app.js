@@ -1,5 +1,6 @@
 var jsonData;
 var startIndex = 0;
+var scroll;
 
 function setCookie(data) {
     var expires = "";
@@ -36,6 +37,7 @@ function populateContent(data, index) {
 
 function loadDetails(item) {
     var id = $(item).attr("id");
+    scroll = $(window).scrollTop();
     $(".stock-content").slideUp();
     $("#load-more-button").slideUp();
     var data = jsonData[id-1].name;
@@ -60,8 +62,9 @@ function addToShoppingCart(item) {
 
 function loadMainView() {
     $(".details").hide();
-    $(".stock-content").slideDown();
-    $("#load-more-button").slideDown();
+    $(".stock-content").show();
+    $("#load-more-button").show();
+    $("html").scrollTop(scroll);
 }
 
 function loadStock(){
