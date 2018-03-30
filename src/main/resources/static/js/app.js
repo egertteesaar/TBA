@@ -20,10 +20,17 @@ function populateContent(data, index) {
                     "<h5 class=\"card-title\">" + brand + " " + name + "</h5>\n" +
                     "<p class=\"card-text\">" + description + "</p>\n" +
                     "<p class=\"font-weight-bold card-text\">" + whole + "." + remainder + "€" + "</p>\n" +
-                    "<a href=\"#\" class=\"btn card-button btn-light\">Detailid</a>\n" +
+                    "<a id='" + item.id +"' onclick='loadDetails(this)' href=\"#\" class=\"btn card-button btn-light\">Detailid</a>\n" +
                 "</div>\n" +
             "</div>");
     }
+}
+
+function loadDetails(item) {
+    var id = $(item).attr("id");
+    $(".stock-content").slideUp();
+    $("#load-more-button").slideUp();
+    // todo load details
 }
 
 function loadStock(){
