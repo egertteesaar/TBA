@@ -30,7 +30,20 @@ function loadDetails(item) {
     var id = $(item).attr("id");
     $(".stock-content").slideUp();
     $("#load-more-button").slideUp();
+    var data = jsonData[id-1].name;
+    $('.content-column').append(
+        "<div class='details'> " +
+        "<p>details here</p>" +
+        '<button onclick="loadMainView()" id="return-button" type="button" class="btn">Tagasi</button>' +
+        "</div>"
+    );
     // todo load details
+}
+
+function loadMainView() {
+    $(".details").hide();
+    $(".stock-content").slideDown();
+    $("#load-more-button").slideDown();
 }
 
 function loadStock(){
@@ -43,7 +56,6 @@ function loadStock(){
         }
     });
 }
-
 
 $(document).ready(function () {
     loadStock();

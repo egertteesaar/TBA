@@ -21,4 +21,11 @@ public class StockResource {
         return mapper.writeValueAsString(allObjs);
     }
 
+    @RequestMapping(value = "/api/stock/{id}", method = RequestMethod.GET)
+    public String getItemById(@PathVariable Long id) throws JsonProcessingException{
+        Stock item = service.getById(id);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(item);
+    }
+
 }

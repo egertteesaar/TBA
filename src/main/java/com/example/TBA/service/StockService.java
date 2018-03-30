@@ -19,4 +19,8 @@ public class StockService {
     public List<Stock> getAll() {
         return repository.findAll();
     }
+
+    public Stock getById(long id) {
+        return repository.findOne(id);
+    }
 }
