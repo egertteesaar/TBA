@@ -1,6 +1,14 @@
 var jsonData;
 var startIndex = 0;
 
+function setCookie(data) {
+    var expires = "";
+    var date = new Date();
+    var days = 3;
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+    document.cookie = "shoppingCart" + "=" + data + expires + "; path=/";
+}
 
 function populateContent(data, index) {
     startIndex += 8;
@@ -34,15 +42,20 @@ function loadDetails(item) {
     $('.content-column').append(
         "<div class='details'> " +
         "<p>details here</p>" +
-        '<button id="'+ id +'" onclick="addToShoppingCart(this)" id="buy-button" type="button" class="btn btn-danger">Ostukorvi</button>' +
+        "<div class='row'>" +
+        '<button id="'+ id +'" onclick="addToShoppingCart(this)" type="button" class="buy-button btn btn-danger">Ostukorvi</button>' +
+        "</div>" +
+        "<div class='row'>" +
         '<button onclick="loadMainView()" id="return-button" type="button" class="btn">Tagasi</button>' +
+        "</div>" +
         "</div>"
     );
 }
 
 function addToShoppingCart(item) {
     var id = $(item).attr("id");
-    alert(id);
+    setCookie(id);
+    alert(document.cookie);
 }
 
 function loadMainView() {
