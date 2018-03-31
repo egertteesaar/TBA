@@ -17,4 +17,9 @@ public class WebController {
     public String index() {
         return "index";
     }
+
+    @RequestMapping("/cart")
+    public String cart() {
+        return "cart";
+    }
 }
