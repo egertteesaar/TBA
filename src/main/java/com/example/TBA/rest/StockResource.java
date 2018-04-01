@@ -28,4 +28,11 @@ public class StockResource {
         return mapper.writeValueAsString(item);
     }
 
+    @RequestMapping(value = "/api/stock/lowInStock", method = RequestMethod.GET)
+    public String getItemsLowInStock() throws JsonProcessingException{
+        List<Item> items = service.getItemsWithQuantityLessThanFive();
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(items);
+    }
+
 }

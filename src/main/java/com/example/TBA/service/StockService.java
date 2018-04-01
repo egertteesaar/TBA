@@ -23,4 +23,8 @@ public class StockService {
     public Item getById(long id) {
         return repository.findOne(id);
     }
+
+    public List<Item> getItemsWithQuantityLessThanFive(){
+        return repository.findItemsWithQuantityLessThanFive();
+    }
 }
