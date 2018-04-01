@@ -1,6 +1,7 @@
 var jsonData;
 var startIndex = 0;
 var scroll;
+var allDataLoaded = false;
 
 function setCookie(data) {
     var expires = "";
@@ -33,6 +34,9 @@ function populateContent(data, index) {
                 "</div>\n" +
             "</div>");
     }
+    if (i >= data.length) {
+        allDataLoaded = true;
+    }
 }
 
 function loadDetails(item) {
@@ -63,7 +67,9 @@ function addToShoppingCart(item) {
 function loadMainView() {
     $(".details").hide();
     $(".stock-content").show();
-    $("#load-more-button").show();
+    if (!allDataLoaded) {
+        $("#load-more-button").show();
+    }
     $("html").scrollTop(scroll);
 }
 
