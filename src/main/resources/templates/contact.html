@@ -18,6 +18,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+
+    <style>
+       #map {
+        margin: auto;
+        height: 400px;
+        width: 40%;
+       }
+
+       #info {
+            text-align: center;
+       }
+    </style>
 </head>
 <body>
 
@@ -58,6 +70,33 @@
         </div>
     </nav>
 </div>
+
+
+<div id="info">
+    <p>Email: midakanda@gmail.com</p>
+    <p>Fax: +44-208-1234567</p>
+</div>
+
+
+<div id="map"></div>
+
+
+<script>
+      function initMap() {
+        var uluru = {lat: 58.379884, lng: 26.723256};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+ </script>
+<script async="async defer"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD58dEVSlYVqu3rkjeK-_njvFAly9p8Z3k&amp;callback=initMap">
+</script>
 
 </body>
 </html>

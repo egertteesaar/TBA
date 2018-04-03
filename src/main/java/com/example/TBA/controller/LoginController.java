@@ -3,6 +3,7 @@ package com.example.TBA.controller;
 import com.example.TBA.model.UserBean;
 import com.example.TBA.repository.UserRepository;
 import com.example.TBA.security.Autologin;
+import com.example.TBA.service.EmailServiceImpl;
 import com.example.TBA.social.providers.FacebookProvider;
 import com.example.TBA.social.providers.GoogleProvider;
 import com.example.TBA.social.providers.LinkedInProvider;
@@ -41,6 +42,9 @@ public class LoginController {
     @Autowired
     private Autologin autologin;
 
+    @Autowired
+    EmailServiceImpl emailServiceImpl;
+
     @RequestMapping(value = "/facebook", method = RequestMethod.GET)
     public String loginToFacebook(Model model) {
         return facebookProvider.getFacebookUserData(model, new UserBean());
@@ -77,6 +81,8 @@ public class LoginController {
             userBean.setPassword(bCryptPasswordEncoder.encode(userBean.getPassword()));
         }
         userRepository.save(userBean);
+
+        emailServiceImpl.sendSimpleMessage(userBean.getEmail(), "MidaKanda Registration", "Nimi: " + userBean.getFirstName());
 
         autologin.setSecuritycontext(userBean);
 

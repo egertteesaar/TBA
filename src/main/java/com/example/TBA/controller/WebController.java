@@ -22,4 +22,9 @@ public class WebController {
     public String cart() {
         return "cart";
     }
+
+    @RequestMapping("/contact")
+    public String contact() {
+        return "contact";
+    }
 }

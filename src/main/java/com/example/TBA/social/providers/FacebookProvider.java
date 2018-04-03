@@ -1,6 +1,7 @@
 package com.example.TBA.social.providers;
 
 import com.example.TBA.model.UserBean;
+import com.example.TBA.service.EmailServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class FacebookProvider  {
 
     @Autowired
     BaseProvider baseProvider ;
+
+	@Autowired
+	EmailServiceImpl emailServiceImpl;
     	
 
 	public String getFacebookUserData(Model model, UserBean userForm) {
@@ -34,6 +38,8 @@ public class FacebookProvider  {
 		populateUserDetailsFromFacebook(userForm);
 		//Save the details in DB
 		baseProvider.saveUserDetails(userForm);
+
+		emailServiceImpl.sendSimpleMessage(userForm.getEmail(), "Login to MidaKanda ", "You just logged in to MidaKanda!");
 		//Login the User
 		baseProvider.autoLoginUser(userForm);
 		model.addAttribute("loggedInUser",userForm);
