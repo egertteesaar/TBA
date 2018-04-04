@@ -15,22 +15,17 @@ import org.springframework.ui.Model;
 @Service
 public class FacebookProvider  {
 
-	private static final Logger log = LoggerFactory.getLogger(FacebookProvider.class);
+    private static final Logger log = LoggerFactory.getLogger(FacebookProvider.class);
 
-	private static final String FACEBOOK = "facebook";
-	private static final String REDIRECT_LOGIN = "redirect:/login";
-	private static final String REDIRECT_SUCCESS = "redirect:/";
+    private static final String FACEBOOK = "facebook";
+    private static final String REDIRECT_LOGIN = "redirect:/login";
+    private static final String REDIRECT_SUCCESS = "redirect:/";
 
     @Autowired
     BaseProvider baseProvider ;
 
-	@Autowired
-	EmailServiceImpl emailServiceImpl;
-    	
-
-	public String getFacebookUserData(Model model, UserBean userForm) {
-
-		ConnectionRepository connectionRepository = baseProvider.getConnectionRepository();
+    public String getFacebookUserData(Model model, UserBean userForm) {
+        ConnectionRepository connectionRepository = baseProvider.getConnectionRepository();
 		if (connectionRepository.findPrimaryConnection(Facebook.class) == null) {
 			return REDIRECT_LOGIN;
 		}
@@ -39,7 +34,6 @@ public class FacebookProvider  {
 		//Save the details in DB
 		baseProvider.saveUserDetails(userForm);
 
-		emailServiceImpl.sendSimpleMessage(userForm.getEmail(), "Login to MidaKanda ", "You just logged in to MidaKanda!");
 		//Login the User
 		baseProvider.autoLoginUser(userForm);
 		model.addAttribute("loggedInUser",userForm);
@@ -57,7 +51,4 @@ public class FacebookProvider  {
 		userForm.setImage("");
 		userForm.setProvider(FACEBOOK);
 	}
-
-	 
-
 }

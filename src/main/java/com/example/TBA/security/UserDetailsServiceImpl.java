@@ -25,16 +25,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		
-		UserBean user = userRepository.findByEmail(email);
-		 if (user == null) {
+        UserBean user = userRepository.findByEmail(email);
+        if (user == null) {
 	            throw new UsernameNotFoundException("No user found with email: " + email);
-	        }
+        }
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 		grantedAuthorities.add(new SimpleGrantedAuthority("LOGGED_USER"));
 		return new User(user.getEmail(), user.getPassword(), grantedAuthorities);
-		
-		
 	}
 
 }

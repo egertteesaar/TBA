@@ -3,6 +3,7 @@ package com.example.TBA.social.providers;
 import com.example.TBA.model.UserBean;
 import com.example.TBA.repository.UserRepository;
 import com.example.TBA.security.Autologin;
+import com.example.TBA.service.EmailServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -32,20 +33,23 @@ public class BaseProvider {
     @Autowired
     protected Autologin autologin;
 
-    public BaseProvider(Facebook facebook, Google google, LinkedIn linkedIn, ConnectionRepository connectionRepository) {
+	@Autowired
+	private EmailServiceImpl emailServiceImpl;
 
+    public BaseProvider(Facebook facebook, Google google, LinkedIn linkedIn, ConnectionRepository connectionRepository) {
         this.facebook = facebook;
         this.connectionRepository = connectionRepository;
         this.google = google;
         this.linkedIn = linkedIn;
-        }
+    }
 
-        protected void saveUserDetails(UserBean userBean) {
+    protected void saveUserDetails(UserBean userBean) {
         if (StringUtils.isNotEmpty(userBean.getPassword())) {
             userBean.setPassword(bCryptPasswordEncoder.encode(userBean.getPassword()));
         }
+        if (userRepository.findByEmail(userBean.getEmail()) == null)
+            emailServiceImpl.sendSimpleMessage(userBean.getEmail(), "Login to MidaKanda ", "You just logged in to MidaKanda!");
         userRepository.save(userBean);
-
     }
 
     public void autoLoginUser(UserBean userBean) {
