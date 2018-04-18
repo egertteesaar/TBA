@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class UserInfoExtracter {
@@ -21,20 +23,14 @@ public class UserInfoExtracter {
     public void extract(HttpServletRequest request){
 
         String remoteAddr = "";
-        String previousURL ="";
-        String previousURL2 ="";
-        System.out.println("################33");
 
         if (request != null) {
             remoteAddr = request.getHeader("X-FORWARDED-FOR");
             if (remoteAddr == null || "".equals(remoteAddr)) {
                 remoteAddr = request.getRemoteAddr();
             }
-            previousURL = request.getHeader("referer");
             UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
             Browser browser = userAgent.getBrowser();
-
-
 
             UserInfo info = new UserInfo();
 
@@ -50,9 +46,30 @@ public class UserInfoExtracter {
 
             userInfoRepository.save(info);
 
-            System.out.println(userInfoRepository.lastHour());
+
 
         }
-        System.out.println("%%%%%%%%%%%%%%%%%%%");
+
+    }
+
+    public String usersLastHour(){
+        return String.valueOf(userInfoRepository.lastHour().get(0));
+    }
+
+    public String mostPopularBrowser(){
+        String line = String.valueOf(userInfoRepository.mostPopularBrowser());
+
+        String pattern ="(\\w+\\d+)";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(line);
+
+        if(m.find()){
+            return m.group(1);
+        }
+        return "don't know";
+    }
+
+    public String numberOfRequests() {
+        return String.valueOf(userInfoRepository.numberOfRequests());
     }
 }

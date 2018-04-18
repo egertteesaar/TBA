@@ -4,6 +4,7 @@ import com.example.TBA.model.UserBean;
 import com.example.TBA.repository.UserRepository;
 import com.example.TBA.security.Autologin;
 import com.example.TBA.service.EmailServiceImpl;
+import com.example.TBA.service.UserInfoExtracter;
 import com.example.TBA.social.providers.FacebookProvider;
 import com.example.TBA.social.providers.GoogleProvider;
 import com.example.TBA.social.providers.LinkedInProvider;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -45,6 +47,10 @@ public class LoginController {
     @Autowired
     EmailServiceImpl emailServiceImpl;
 
+
+    @Autowired
+    UserInfoExtracter extracter;
+
     @RequestMapping(value = "/facebook", method = RequestMethod.GET)
     public String loginToFacebook(Model model) {
         return facebookProvider.getFacebookUserData(model, new UserBean());
@@ -61,7 +67,8 @@ public class LoginController {
     }
 
     @RequestMapping(value = { "/login" })
-    public String login() {
+    public String login(HttpServletRequest request) {
+        extracter.extract(request);
         return "login";
     }
 

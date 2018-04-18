@@ -5,7 +5,7 @@
     <title>MidaKanda Kontaktandmed</title>
 
 
-    <meta name="description" content="lehekülg, kus kasutajal kättesaadavad MidaKanda tiimi email, fax ning asukoht kaardil" />
+    <meta name="description" content="lehekülg, kus kasutajal kättesaadavad MidaKanda tiimi email, fax ning asukoht kaardil. Lehe allosas statistika lehe kohta" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="css/custom.css"/>
@@ -70,13 +70,6 @@
                 </li>
             </ul>
         </div>
-
-        <div class="starter-template">
-            <h1>Spring Boot Web Thymeleaf Example</h1>
-            <h2>
-                <span th:text="'Message: ' + ${message}"></span>
-            </h2>
-        </div>
     </nav>
 </div>
 
@@ -89,6 +82,18 @@
 
 <div id="map"></div>
 
+<br></br>
+
+<div style="text-align: center;" class="Statistics">
+    <h2>Statistics</h2>
+
+    <span th:text="'Number of users (last hour): ' + ${lastHour}"></span>
+    <br></br>
+    <span th:text="'Most popular browser for requests: ' + ${popularBrowser}"></span>
+    <br></br>
+    <span th:text="'Number of requests to page: ' + ${numRequests}"></span>
+
+</div>
 
 <script>
       function initMap() {

@@ -28,12 +28,17 @@ public class WebController {
     }
 
     @RequestMapping("/cart")
-    public String cart() {
+    public String cart(HttpServletRequest request) {
+        extracter.extract(request);
         return "cart";
     }
 
     @RequestMapping("/contact")
-    public String contact() {
+    public String contact(Map<String, Object> model, HttpServletRequest request) {
+        extracter.extract(request);
+        model.put("popularBrowser", extracter.mostPopularBrowser());
+        model.put("lastHour", extracter.usersLastHour());
+        model.put("numRequests", extracter.numberOfRequests());
         return "contact";
     }
 }

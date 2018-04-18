@@ -35,8 +35,11 @@ public interface UserInfoRepository extends CrudRepository<UserInfo, Long> {
     @Query(value ="select created_date from customer_info", nativeQuery = true)
     public List<Object> dates();
 
-    @Query(value ="SELECT created_date FROM customer_info WHERE created_date >= date_trunc('day', now()) + interval '1h'", nativeQuery = true)
+    @Query(value ="SELECT COUNT(DISTINCT ip_address) FROM customer_info WHERE created_date >= date_trunc('day', now()) + interval '1h'", nativeQuery = true)
     public List<Object> lastHour();
+
+    @Query(value ="select COUNT(created_date) from customer_info", nativeQuery = true)
+    public String numberOfRequests();
 
 
 
