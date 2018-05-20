@@ -2,7 +2,16 @@ var cartItems = [];
 var price = 0;
 
 function removeItem(id) {
-    // todo: remove from shopping cart
+    var index = cartItems.indexOf("" + id);
+    if (index !== - 1) {
+        if (cartItems.length === 1) {
+            cartItems = [];
+        } else {
+            cartItems.splice(index, 1);
+        }
+    }
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    removeRow(id);
 }
 
 function getItem(id){
@@ -12,20 +21,24 @@ function getItem(id){
             data = $.parseJSON(data);
             jsonData = data;
             price += data.price / 100;
-            addRow(jsonData);
+            addRow(jsonData, id);
         }
     });
 }
 
-function addRow(data) {
+function addRow(data, id) {
     $('#cartTable tbody').append(
-        "<tr>" +
+        "<tr id='" + id + "'>" +
         '<td>' + data.brand + '</td>' +
         '<td>'+ data.name + '</td>' +
         '<td>'+ data.price / 100 + '</td>' +
-        '<td><button type="button" class="btn btn-danger">Remove</button></td>' +
+        '<td><button onclick="removeItem(' + data.id +')" type="button" class="btn btn-danger">Remove</button></td>' +
         '</tr>'
     );
+}
+
+function removeRow(id) {
+    $("#cartTable #" + id).remove();
 }
 
 function populateCart() {
