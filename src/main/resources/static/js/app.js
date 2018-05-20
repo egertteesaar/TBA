@@ -2,15 +2,13 @@ var jsonData;
 var startIndex = 0;
 var scroll;
 var allDataLoaded = false;
+var cartItems = [];
 
-function setCookie(data) {
-    var expires = "";
-    var date = new Date();
-    var days = 3;
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    expires = "; expires=" + date.toUTCString();
-    document.cookie = "shoppingCart" + "=" + data + expires + "; path=/";
+function saveToLocalStorage(data) {
+    cartItems.push(data);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems))
 }
+
 
 function populateContent(data, index) {
     startIndex += 8;
@@ -47,7 +45,7 @@ function loadDetails(item) {
     var data = jsonData[id-1].name;
     $('.content-column').append(
         "<div class='details'> " +
-        "<p>details here</p>" +
+        "<p>In stock</p>" +
         "<div class='row'>" +
         '<button id="'+ id +'" onclick="addToShoppingCart(this)" type="button" class="buy-button btn btn-danger">Ostukorvi</button>' +
         "</div>" +
@@ -60,8 +58,8 @@ function loadDetails(item) {
 
 function addToShoppingCart(item) {
     var id = $(item).attr("id");
-    setCookie(id);
-    alert(document.cookie);
+    saveToLocalStorage(id);
+    // todo: show notification
 }
 
 function loadMainView() {
@@ -92,5 +90,8 @@ $(document).ready(function () {
             $("#load-more-button").hide();
         }
     });
+    if (localStorage.getItem('cartItems')) {
+        cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    }
 });
 
