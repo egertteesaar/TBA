@@ -58,8 +58,26 @@ function loadDetails(item) {
 
 function addToShoppingCart(item) {
     var id = $(item).attr("id");
-    saveToLocalStorage(id);
-    // todo: show notification
+    if (!isAlreadyInCart(id)) {
+        saveToLocalStorage(id);
+        showSuccessNotification();
+    } else {
+        showUnuccessfulNotification();
+    }
+}
+
+function showSuccessNotification() {
+    $(".details").prepend("" +
+        "<div class=\"alert alert-success\" role=\"alert\">\n" +
+        " Toode lisati ostukorvi!" +
+        "</div>");
+}
+
+function showUnuccessfulNotification() {
+    $(".details").prepend("" +
+        "<div class=\"alert alert-danger\" role=\"alert\">\n" +
+        " Toode on juba ostukorvis!" +
+        "</div>");
 }
 
 function loadMainView() {
@@ -80,6 +98,10 @@ function loadStock(){
             populateContent(jsonData, startIndex);
         }
     });
+}
+
+function isAlreadyInCart(id) {
+    return cartItems.indexOf(id) !== -1;
 }
 
 $(document).ready(function () {
