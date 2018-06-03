@@ -6,8 +6,6 @@ import com.example.TBA.security.Autologin;
 import com.example.TBA.service.EmailServiceImpl;
 import com.example.TBA.service.UserInfoExtracter;
 import com.example.TBA.social.providers.FacebookProvider;
-import com.example.TBA.social.providers.GoogleProvider;
-import com.example.TBA.social.providers.LinkedInProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,12 +28,6 @@ public class LoginController {
     FacebookProvider facebookProvider;
 
     @Autowired
-    GoogleProvider googleProvider;
-
-    @Autowired
-    LinkedInProvider linkedInProvider;
-
-    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -53,17 +45,9 @@ public class LoginController {
 
     @RequestMapping(value = "/facebook", method = RequestMethod.GET)
     public String loginToFacebook(Model model) {
-        return facebookProvider.getFacebookUserData(model, new UserBean());
-    }
-
-    @RequestMapping(value = "/google", method = RequestMethod.GET)
-    public String loginToGoogle(Model model) {
-        return googleProvider.getGoogleUserData(model, new UserBean());
-    }
-
-    @RequestMapping(value = "/linkedin", method = RequestMethod.GET)
-    public String helloFacebook(Model model) {
-        return linkedInProvider.getLinkedInUserData(model, new UserBean());
+        UserBean userBean = facebookProvider.getUserBean();
+        facebookProvider.saveUserDetails(userBean);
+        return facebookProvider.login(model, userBean);
     }
 
     @RequestMapping(value = { "/login" })
